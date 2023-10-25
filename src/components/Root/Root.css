@@ -1,0 +1,7 @@
+.navigation {
+    position:absolute;
+    top:10px;
+}
+.navigation li {
+    display:inline;
+}

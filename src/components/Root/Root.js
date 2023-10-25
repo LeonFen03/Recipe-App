@@ -3,8 +3,12 @@ import './Root.css';
 
 function Root () {
  return (<div>
-    <nav>
+    <nav className="navigation">
+        <ul>
+            <li>
 
+            </li>
+        </ul>
     </nav>
     <Outlet />
  </div>)
