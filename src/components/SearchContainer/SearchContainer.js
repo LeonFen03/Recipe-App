@@ -9,6 +9,7 @@ import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import BrunchDiningIcon from '@mui/icons-material/BrunchDining';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useMemo } from 'react';
+import SearchContainerPresentational from '../SearchContainerPresentation/SearchContainerPresentational';
 import Button from '@mui/material/Button';
 function SearchContainer () {
     const [searchInput,setSearchInput] = useState('');
@@ -74,32 +75,13 @@ function SearchContainer () {
     },[categories])
 
 
-    return (<div className="body">
-        <div>
-        <div className="search-results">
-        <div className="image-box">
-            <img src={titleImage} />
-        </div>
-        <div className="results">
-            <div className="search-bar">
-                <div>
-                <TextField
-                style={{width:'500px',transform:'scale(1.6)',backgroundColor:'white'}}
-                id="outlined-required"
-                label="Dish"
-                placeholder='Spaghetti'
-                onChange={handleSearch}
-                />
-                </div>
-            </div>
-            <div className="category-container">
-                {AllCategories}
-            </div>
-            
-                {availableRecipes}
-            </div>
-        </div>
-        </div>
-    </div>)
+    const searchProperties = {
+        availableRecipes:availableRecipes,
+        AllCategories:AllCategories,
+        titleImage:titleImage,
+        handleSearch:handleSearch,
+
+    }
+    return (<SearchContainerPresentational {...searchProperties} />)
 }   
 export default SearchContainer;
