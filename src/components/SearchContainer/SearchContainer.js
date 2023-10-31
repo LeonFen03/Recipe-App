@@ -11,8 +11,7 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useMemo } from 'react';
 import SearchContainerPresentational from '../SearchContainerPresentation/SearchContainerPresentational';
 import Button from '@mui/material/Button';
-
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const pagesConverter  = (items,numOfPages = 2) => {
     let pageIndex = 0;
@@ -33,8 +32,9 @@ export const pagesConverter  = (items,numOfPages = 2) => {
 function SearchContainer () {
     const [searchInput,setSearchInput] = useState('');
     const [recipesList,setRecipeList] = useState([]);
+    const [favorited,setFavorited] = useState([])
     const [currentCategory,setCurrentCategory] = useState('all');
-    const categories = [['breakfast',<BrunchDiningIcon sx={{fontSize:'5em'}} />],['lunch',<RestaurantIcon sx={{fontSize:'5em'}}  />],['dinner',<DinnerDiningIcon sx={{fontSize:'5em'}} />],['dessert',<IcecreamIcon sx={{fontSize:'5em'}}  />],['all',<LocalLibraryIcon sx={{fontSize:'5em'}}  />]];
+    const categories = [['breakfast',<BrunchDiningIcon sx={{fontSize:'5em'}} />],['lunch',<RestaurantIcon sx={{fontSize:'5em'}}  />],['dinner',<DinnerDiningIcon sx={{fontSize:'5em'}} />],['dessert',<IcecreamIcon sx={{fontSize:'5em'}}  />],['all',<LocalLibraryIcon sx={{fontSize:'5em'}}  />],['favorite',<FavoriteIcon sx={{fontSize:'4em', marginRight:'3px'}} />]];
 
     function switchCategory (category) {
         setCurrentCategory(category);
@@ -67,6 +67,7 @@ function SearchContainer () {
     const availableRecipes = useMemo(() => {
        return recipesList.map((recipe,key) => {
         if ( (recipe.name.includes(searchInput) && (recipe.category === currentCategory || currentCategory === 'all'))) {
+            const isFavorited = favorited.find((r) => (r["name"] === recipe["name"]));
             return (
                 <RecipeCard recipe={recipe} name={recipe.name} image={recipe.image} key={key} />
                 )
