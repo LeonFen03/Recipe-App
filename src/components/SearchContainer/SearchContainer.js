@@ -11,6 +11,25 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useMemo } from 'react';
 import SearchContainerPresentational from '../SearchContainerPresentation/SearchContainerPresentational';
 import Button from '@mui/material/Button';
+
+
+
+export const pagesConverter  = (items,numOfPages = 2) => {
+    let pageIndex = 0;
+    const pagesArray = [[]];
+    if (!items.length) return [];
+    items.forEach((item,index) => {
+      if ((index+1) % numOfPages === 0) {
+        pageIndex++
+        pagesArray[pageIndex] = [];
+      }   else {
+        pagesArray[pageIndex].push(item)
+      }
+      
+    })
+    return  pagesArray;
+}
+
 function SearchContainer () {
     const [searchInput,setSearchInput] = useState('');
     const [recipesList,setRecipeList] = useState([]);
