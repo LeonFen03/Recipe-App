@@ -22,7 +22,9 @@
     align-items:flex-end;
     transform:scale(0.29);
 }
+.recipe-image img {
 
+}
 .recipe-card h3 {
     text-decoration:underline;
 }
@@ -42,4 +44,14 @@
     z-index:2;
     background-color:#fbf5e6;
 
+}
+.skeleton-container {
+    margin:20px;
+}
+.dialog-img-container {
+    display:flex;
+    justify-content: center;
+}
+.dialog-img-container > img {
+    border-radius:20px;
 }

@@ -1,10 +1,13 @@
 import './RecipeCard.css';
 import {Card} from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
+import CustomizedDialogs from '../Recipe-Card/RecipeDialogAction/RecipeCard';
 import { motion } from 'framer-motion';
 function RecipeCard (props) {
-    const serverURL =  'http://localhost:3002';
+    const serverURL =  !(props.recipe.hasOwnProperty('mockData')) ? 'http://localhost:3002' : '' ;
+
     const image = props.image ? serverURL+props.image : "https://placehold.co/310x400/000000/FFF";
+    console.log(image)
     return ( <motion.div
         key={props.key}
         initial={{ opacity: 0, transform:`scale(0.9)` }}
@@ -14,7 +17,8 @@ function RecipeCard (props) {
         ><Card elevation={15} className="recipe-card">
         <div className="recipe-title">
            <h3 style={{fontSize:'1.4em'}}>{props.name}</h3>
-           <h3>Recipe <FastfoodIcon size='large' /></h3>
+           <CustomizedDialogs image={image} recipeObject={props.recipe} text={<h3>Recipe <FastfoodIcon size='large' /></h3>} />
+
         </div>
         <div className="recipe-image">
             <img src={image} />
