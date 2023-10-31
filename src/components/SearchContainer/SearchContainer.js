@@ -1,6 +1,7 @@
 import './SearchContainer.css';
 import { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
+import RecipeCard from '../Recipe-Card/RecipeCard';
 import titleImage from '../images/title.png';
 import IcecreamIcon from '@mui/icons-material/Icecream';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -32,6 +33,9 @@ function SearchContainer () {
             }
             return recipes;
         })
+        // .catch((err) => {
+        //     setRecipeList(mockData)
+        // })
     
     }
     useEffect(() => {
@@ -40,6 +44,17 @@ function SearchContainer () {
     function handleSearch (e) {
         setSearchInput(e.target.value)
     }
+    const availableRecipes = useMemo(() => {
+       return recipesList.map((recipe,key) => {
+        if ( (recipe.name.includes(searchInput) && (recipe.category === currentCategory || currentCategory === 'all'))) {
+            return (
+                <RecipeCard recipe={recipe} name={recipe.name} image={recipe.image} key={key} />
+                )
+            
+        }
+        return ''
+    })
+    },[currentCategory,searchInput])
     const AllCategories = useMemo(() => {
         return categories.map((category) => {
             const defaultStyles = {borderColor:'#471824',margin:'10px',color:'#471824'};
@@ -80,7 +95,8 @@ function SearchContainer () {
             <div className="category-container">
                 {AllCategories}
             </div>
- 
+            
+                {availableRecipes}
             </div>
         </div>
         </div>
