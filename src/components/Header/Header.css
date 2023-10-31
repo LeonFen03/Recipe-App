@@ -7,7 +7,14 @@
     background-attachment:fixed;
     height:530px;
 }
-
+.title-bg .dragon {
+    width:100px;
+}
+.title-bg {
+    background:#f3dfc4;
+    padding:20px;
+    border-radius:20px;
+}
 .herosection-image-container .title {
     display:flex;
     color:#4a1923;
@@ -21,4 +28,7 @@
     background-color:rgba(245,224,197,255);
     padding:20px;
     border-radius:10px;
+}
+ul {
+    margin:0px;
 }
