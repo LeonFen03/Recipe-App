@@ -12,6 +12,10 @@
     margin:8px;
     transition: 2s;
 }
+.recipe-card:hover {
+    transform:scale(1.05);
+    background-color: #471824;
+}
 .recipe-image {
     display:flex;
     height:100%;
@@ -21,6 +25,9 @@
 
 .recipe-card h3 {
     text-decoration:underline;
+}
+.recipe-card img {
+    border-radius:6px;
 }
 .recipe-title {
     position:absolute;
