@@ -14,6 +14,7 @@ import SearchContainerPresentational from '../SearchContainerPresentation/Search
 import { AddToFavorites } from '../RecipeMethods/RecipeMethods';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { serverURL } from '../Root/Root';
 
 export const pagesConverter  = (items,numOfPages = 2) => {
     let pageIndex = 0;
@@ -43,7 +44,7 @@ function SearchContainer () {
     }
 
     function RetreiveRecipes () {
-        fetch('http://localhost:3002/recipes')
+        fetch(serverURL+'/recipes')
         .then((resolved) => {
             return resolved.json();
         })
