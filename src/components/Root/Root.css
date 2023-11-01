@@ -2,6 +2,7 @@
     position:absolute;
     top:10px;
 }
-.navigation li {
+.navigation ul li {
     display:inline;
+    margin:20px;
 }
