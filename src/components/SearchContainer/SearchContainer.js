@@ -9,6 +9,7 @@ import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import BrunchDiningIcon from '@mui/icons-material/BrunchDining';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useMemo } from 'react';
+import { grabFavorites } from '../RecipeMethods/RecipeMethods';
 import SearchContainerPresentational from '../SearchContainerPresentation/SearchContainerPresentational';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -78,12 +79,22 @@ function SearchContainer () {
     },[currentCategory,searchInput])
     const AllCategories = useMemo(() => {
         return categories.map((category) => {
-            const defaultStyles = {borderColor:'#471824',margin:'10px',color:'#471824'};
+            let categoryf = switchCategory;
+            let data = category[0];
+            const defaultStyles = {borderColor:'#471824',margin:'10px',color:'#471824','&:hover': { backgroundColor: '#b78b6bfb'}};
             const variant = 'filled';
             const activeCategory = currentCategory === category[0];
+
             if (activeCategory) {
                 defaultStyles.backgroundColor = '#471824';
                 defaultStyles.color = 'white';
+            }
+            if (category[0] === 'favorite') {
+                data = setFavorited;
+                categoryf = (data) => {
+                    switchCategory(category[0]);
+                    grabFavorites(data);
+                };
             }
             return (<div >
                  <Button onClick={(e) => switchCategory(category[0])}  sx={defaultStyles} variant={variant} size="large">

@@ -1,6 +1,8 @@
 import { Outlet } from "react-router";
 import './Root.css';
 
+
+
 function Root () {
  return (<div>
     <nav className="navigation">
@@ -13,4 +15,8 @@ function Root () {
     <Outlet />
  </div>)
 }
+
+
+export const serverURL = 'http://localhost:3002';
+
 export default Root;
