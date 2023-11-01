@@ -4,7 +4,7 @@
     try {
       const favoriteRecipe = await fetch(serverURL+'/recipes/favorites/');
       const results = (await favoriteRecipe.json());
-        returnFavorites(results);
+    returnFavorites(results);
     } catch (err) {
     }
 

@@ -11,6 +11,7 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useMemo } from 'react';
 import { grabFavorites } from '../RecipeMethods/RecipeMethods';
 import SearchContainerPresentational from '../SearchContainerPresentation/SearchContainerPresentational';
+import { AddToFavorites } from '../RecipeMethods/RecipeMethods';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -32,7 +33,7 @@ export const pagesConverter  = (items,numOfPages = 2) => {
 
 function SearchContainer () {
     const [searchInput,setSearchInput] = useState('');
-    const [recipesList,setRecipeList] = useState([]);
+    const [recipesList,setRecipeList] = useState({mockUp:false, recipes:null});
     const [favorited,setFavorited] = useState([])
     const [currentCategory,setCurrentCategory] = useState('all');
     const categories = [['breakfast',<BrunchDiningIcon sx={{fontSize:'5em'}} />],['lunch',<RestaurantIcon sx={{fontSize:'5em'}}  />],['dinner',<DinnerDiningIcon sx={{fontSize:'5em'}} />],['dessert',<IcecreamIcon sx={{fontSize:'5em'}}  />],['all',<LocalLibraryIcon sx={{fontSize:'5em'}}  />],['favorite',<FavoriteIcon sx={{fontSize:'4em', marginRight:'3px'}} />]];
@@ -48,15 +49,15 @@ function SearchContainer () {
         })
         .then((recipes) => {   
             if (!recipesList.Error) {
-                setRecipeList(recipes);
+                setRecipeList({ mockUp:false, recipes:recipes});
             } else {
-                setRecipeList([]); 
+                setRecipeList({mockUp:false, recipes:null}); 
             }
             return recipes;
         })
-        // .catch((err) => {
-        //     setRecipeList(mockData)
-        // })
+        .catch((err) => {
+            
+         })
     
     }
     useEffect(() => {
@@ -66,17 +67,42 @@ function SearchContainer () {
         setSearchInput(e.target.value)
     }
     const availableRecipes = useMemo(() => {
-       return recipesList.map((recipe,key) => {
-        if ( (recipe.name.includes(searchInput) && (recipe.category === currentCategory || currentCategory === 'all'))) {
-            const isFavorited = favorited.find((r) => (r["name"] === recipe["name"]));
-            return (
-                <RecipeCard recipe={recipe} name={recipe.name} image={recipe.image} key={key} />
-                )
-            
+        let extractRecipes = recipesList['recipes'];
+        if (currentCategory === 'favorite') {
+            extractRecipes = favorited;
+        }  
+        if (!(extractRecipes === null) && (extractRecipes.length)) {
+            extractRecipes = extractRecipes.map((recipe,key) => {
+                    const recipeName = recipe.name.toLowerCase();
+                    const inputName = searchInput.toLowerCase();
+                    if ( ((recipeName.includes(inputName) && (recipe.category === currentCategory)) || currentCategory === 'all' || currentCategory === 'favorite')) {
+                        const isFavorited = favorited.find((r) => (r["name"] === recipe["name"]));
+
+                        const RecipeCardProperties = {
+
+                            favoritedStatus:favorited,
+                            addFavorite:AddToFavorites,
+                            setFavorite:setFavorited,
+                            mockUp:recipesList.mockUp,
+                            recipe:recipe,
+                            name:recipe.name,
+                            image:recipe.image,
+                            key:key,
+                            isFavorited:isFavorited ? true : false,
+                        }
+                        return (
+                            <RecipeCard {...RecipeCardProperties} />
+                            )
+                    } 
+                
+                return '';
+            }).filter((i) => i !== '')
+            extractRecipes = pagesConverter(extractRecipes,5).filter((page) => page.length);
+        } else {
+            extractRecipes = [];
         }
-        return ''
-    })
     },[currentCategory,searchInput])
+
     const AllCategories = useMemo(() => {
         return categories.map((category) => {
             let categoryf = switchCategory;
@@ -97,13 +123,13 @@ function SearchContainer () {
                 };
             }
             return (<div >
-                 <Button onClick={(e) => switchCategory(category[0])}  sx={defaultStyles} variant={variant} size="large">
-                {category[1]}
-                <p>{category[0]}</p>
-                </Button>
-                </div>)
+                <Button onClick={(e) => categoryf(data)}  sx={defaultStyles} variant={variant} size="large">
+               {category[1]}
+               <p>{category[0]}</p>
+               </Button>
+               </div>)
         })
-    },[categories])
+    },[categories,recipesList])
 
 
     const searchProperties = {
