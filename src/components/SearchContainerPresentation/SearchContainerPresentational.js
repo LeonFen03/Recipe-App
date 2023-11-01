@@ -1,7 +1,11 @@
 import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import {ButtonGroup} from "@mui/material";
 function SearchContainerPresentational (props) {
     const {
         availableRecipes:availableRecipes,
+        pageIndex:pageIndex,
+        turnPage:turnPage,
         AllCategories:AllCategories,
         titleImage:titleImage,
         handleSearch:handleSearch,
@@ -30,7 +34,15 @@ function SearchContainerPresentational (props) {
             {AllCategories}
         </div>
         
-            {availableRecipes}
+            {availableRecipes[pageIndex]}
+            <div className="button-bar">
+            {availableRecipes.map((_,i) => {
+                i = i+1;
+                return (<div className="button">
+                        <Button   sx={{fontSize:'2em',backgroundColor: (i-1) === pageIndex ? '#471824' : '#b78b6bfb','&:hover': { backgroundColor: '#b78b6bfb'}}} onClick={() => turnPage(i-1)} variant="contained">{i}</Button>
+                    </div>)
+            })}
+            </div>
         </div>
     </div>
     </div>

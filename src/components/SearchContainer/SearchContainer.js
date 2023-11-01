@@ -36,13 +36,16 @@ function SearchContainer () {
     const [searchInput,setSearchInput] = useState('');
     const [recipesList,setRecipeList] = useState({mockUp:false, recipes:null});
     const [favorited,setFavorited] = useState([])
+    const [pageIndex,setPageIndex] = useState(0);
     const [currentCategory,setCurrentCategory] = useState('all');
     const categories = [['breakfast',<BrunchDiningIcon sx={{fontSize:'5em'}} />],['lunch',<RestaurantIcon sx={{fontSize:'5em'}}  />],['dinner',<DinnerDiningIcon sx={{fontSize:'5em'}} />],['dessert',<IcecreamIcon sx={{fontSize:'5em'}}  />],['all',<LocalLibraryIcon sx={{fontSize:'5em'}}  />],['favorite',<FavoriteIcon sx={{fontSize:'4em', marginRight:'3px'}} />]];
 
     function switchCategory (category) {
         setCurrentCategory(category);
     }
-
+    function turnPage (i) {
+        setPageIndex(i);
+    }
     function RetreiveRecipes () {
         fetch(serverURL+'/recipes')
         .then((resolved) => {
@@ -71,7 +74,8 @@ function SearchContainer () {
         let extractRecipes = recipesList['recipes'];
         if (currentCategory === 'favorite') {
             extractRecipes = favorited;
-        }  
+        }   
+        // If recipes loaded else deliver an empty array
         if (!(extractRecipes === null) && (extractRecipes.length)) {
             extractRecipes = extractRecipes.map((recipe,key) => {
                     const recipeName = recipe.name.toLowerCase();
@@ -97,12 +101,13 @@ function SearchContainer () {
                     } 
                 
                 return '';
-            })
+            }).filter((i) => i !== '')
+            extractRecipes = pagesConverter(extractRecipes,5).filter((page) => page.length);
         } else {
             extractRecipes = [];
         }
-        return extractRecipes;
-    },[currentCategory,searchInput])
+        return !extractRecipes.length ? [[<h1>No Results</h1>]] : extractRecipes;
+    },[currentCategory,searchInput,favorited,recipesList])
 
     const AllCategories = useMemo(() => {
         return categories.map((category) => {
@@ -124,17 +129,19 @@ function SearchContainer () {
                 };
             }
             return (<div >
-                <Button onClick={(e) => categoryf(data)}  sx={defaultStyles} variant={variant} size="large">
-               {category[1]}
-               <p>{category[0]}</p>
-               </Button>
-               </div>)
+                 <Button onClick={(e) => categoryf(data)}  sx={defaultStyles} variant={variant} size="large">
+                {category[1]}
+                <p>{category[0]}</p>
+                </Button>
+                </div>)
         })
     },[categories,recipesList])
 
 
     const searchProperties = {
         availableRecipes:availableRecipes,
+        pageIndex:pageIndex,
+        turnPage:turnPage,
         AllCategories:AllCategories,
         titleImage:titleImage,
         handleSearch:handleSearch,
