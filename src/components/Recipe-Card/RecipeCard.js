@@ -2,11 +2,16 @@ import './RecipeCard.css';
 import {Card} from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import CustomizedDialogs from '../Recipe-Card/RecipeDialogAction/RecipeCard';
+import { serverURL } from '../Root/Root';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 function RecipeCard (props) {
-    const serverURL =  !(props.recipe.hasOwnProperty('mockData')) ? 'http://localhost:3002' : '' ;
+    const server =  !props.mockUp ? serverURL : '';
+    const {favoritedStatus} = props;
+    const {isFavorited} = props;
+    const [favoriteToggle,setFavoriteToggle] = useState(isFavorited);
+    const image = props.image ? server+props.image : "https://placehold.co/310x400/000000/FFF";
 
-    const image = props.image ? serverURL+props.image : "https://placehold.co/310x400/000000/FFF";
     console.log(image)
     return ( <motion.div
         key={props.key}

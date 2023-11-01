@@ -96,11 +96,11 @@ function SearchContainer () {
                     } 
                 
                 return '';
-            }).filter((i) => i !== '')
-            extractRecipes = pagesConverter(extractRecipes,5).filter((page) => page.length);
+            })
         } else {
             extractRecipes = [];
         }
+        return extractRecipes;
     },[currentCategory,searchInput])
 
     const AllCategories = useMemo(() => {

@@ -9,7 +9,27 @@
     }
 
   
+
   }
+  export const deleteFavorites = async (id,returnFavorites) => {
+    try {
+     const deletedRecipe = await fetch(serverURL+`/recipes/favorites/${id}`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((err) => {
+        console.log('errors')
+      })
+      const deletedRecipeJSON = await deletedRecipe.json();
+      grabFavorites(returnFavorites);
+    } catch (err) {
+
+    }
+  }
+  
+  
 
   export const AddToFavorites = async (object,returnFavorite) => {
     try {
