@@ -24,7 +24,9 @@ function App() {
   const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Root />}> 
     <Route path="Home" element={<Home />} />
-      <Route path="recipes" element={<Recipes />} />
+    <Route path="recipes" element={<Recipes />} >
+      <Route path=":id" />
+    </Route>
     </Route>))
 
   return (
