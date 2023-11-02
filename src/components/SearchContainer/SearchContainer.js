@@ -77,7 +77,7 @@ function SearchContainer () {
         setRecipeList({ mockUp:false, recipes:[]})
      
     }
-    
+
     async function seedData () {
         const seedData = await fetch(serverURL+'/recipes/seeds');
         const seedJSON = await seedData.json();
@@ -158,6 +158,9 @@ function SearchContainer () {
         availableRecipes:availableRecipes,
         pageIndex:pageIndex,
         turnPage:turnPage,
+        setRecipeList:setRecipeList,
+        seedData:seedData,
+        clearData:clearData,
         AllCategories:AllCategories,
         titleImage:titleImage,
         handleSearch:handleSearch,
