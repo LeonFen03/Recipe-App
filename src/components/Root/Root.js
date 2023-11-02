@@ -26,4 +26,24 @@ function Root () {
 
 export const serverURL = 'http://localhost:3002';
 
+
+export const formatImage =  (imageURL) => {
+    const imageUrlFormat = new RegExp('https:*')
+    const imageServerFormat = new RegExp('/images/*')
+    let recipe_image_properties = {transform:'scale(0.38)'};
+  
+    let formattedImage = imageURL;
+    if (imageUrlFormat.test(formattedImage)) {
+         formattedImage = imageURL;
+         recipe_image_properties = {transform:'scale(0.38)'}
+     }  else if (imageServerFormat.test(formattedImage)) {
+         formattedImage = serverURL+imageURL;
+         recipe_image_properties = {transform:'scale(0.29)'}
+     } else if (!formattedImage) {
+         formattedImage = "https://placehold.co/310x400/000000/FFF";
+     } 
+  
+     return [formattedImage,recipe_image_properties];
+  }
+  
 export default Root;
