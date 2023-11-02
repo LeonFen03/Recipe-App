@@ -42,6 +42,7 @@ function SearchContainer () {
 
     function switchCategory (category) {
         setCurrentCategory(category);
+        turnPage(0);
     }
     function turnPage (i) {
         setPageIndex(i);
