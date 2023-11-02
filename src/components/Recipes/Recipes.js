@@ -2,7 +2,9 @@ import './Recipes.css'
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 import { serverURL } from '../Root/Root';
+import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
+import { ArrowBack } from '@mui/icons-material';
 function Recipes () {
     const [recipe,setRecipe] = useState({})
     const {id} = useParams();
@@ -24,9 +26,9 @@ function Recipes () {
     
             ><div className="window-container">
         <div className="recipes-container">
-            <div className="window-card">
-
-            </div>
+            <div className="window-exit">
+                    <Button><ArrowBack  sx={{fontSize:'6em',color:'#471824'}} /></Button>
+                </div>
             <div className="image-container">
                  <img src={serverURL+recipe.image} />
             </div>
