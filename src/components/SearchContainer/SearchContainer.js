@@ -102,11 +102,11 @@ function SearchContainer () {
                         const RecipeCardProperties = {
 
                             favoritedStatus:favorited,
+                            refreshRecipes:setRecipeList,
                             addFavorite:AddToFavorites,
                             setFavorite:setFavorited,
                             mockUp:recipesList.mockUp,
                             recipe:recipe,
-                            name:recipe.name,
                             image:recipe.image,
                             key:key,
                             isFavorited:isFavorited ? true : false,

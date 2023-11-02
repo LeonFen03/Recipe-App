@@ -145,17 +145,17 @@ export default function AddRecipeDialogs(props) {
 }
 function ClickableChips( {handleClick, handleImage }) {
   const [chosen,setChosen] = useState('breakfast')
-  function chooseDefault(string,callback) {
-    // handleImage('/images/default plate.png');
-    callback(string)
+  function chooseDefault(string) {
+    setChosen(string)
+    handleClick(chosen)
   }
 
   return (
     <Stack direction="row" spacing={1}>
       <Chip label="breakfast" variant={ chosen === 'breakfast' ? "filled" : "outlined"} onClick={() => chooseDefault('breakfast',handleClick)} />
-      <Chip label="lunch" variant="outlined" onClick={() => chooseDefault('lunch',handleClick)} />
-      <Chip label="dinner"  variant="outlined" onClick={() => handleClick('dinner',handleClick)} />
-      <Chip label="all" variant="outlined" onClick={() => handleClick('all',handleClick)} />
+      <Chip label="lunch" variant={ chosen === 'lunch' ? "filled" : "outlined"} onClick={() => chooseDefault('lunch',handleClick)} />
+      <Chip label="dinner" variant={ chosen === 'dinner' ? "filled" : "outlined"} onClick={() => handleClick('dinner',handleClick)} />
+      <Chip label="all" variant={ chosen === 'all' ? "filled" : "outlined"} onClick={() => handleClick('all',handleClick)} />
     </Stack>
   );
 }

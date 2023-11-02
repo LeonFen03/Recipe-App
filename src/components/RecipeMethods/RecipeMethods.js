@@ -11,6 +11,16 @@
   
 
   }
+  export const grabRecipes = async (returnRecipes) => {
+    try {
+      const AllRecipe = await fetch(serverURL+'/recipes/');
+      const results = await AllRecipe.json();
+      returnRecipes({ mockUp:false,  recipes:results});
+    } catch (err) {
+      console.log(err)
+    }
+  
+  }
   export const deleteFavorites = async (id,returnFavorites) => {
     try {
      const deletedRecipe = await fetch(serverURL+`/recipes/favorites/${id}`,{
@@ -28,7 +38,7 @@
 
     }
   }
-  
+
   export const addRecipe = async (object,update) => {
     try {
     const recipe = await fetch(serverURL+'/recipes/create', {
@@ -45,7 +55,20 @@
         
     }
   }
-  
+
+  export const deleteRecipe = async (id,update) => {
+  try {
+    const deleteRecipe = await fetch(serverURL+`/recipes/${id}`,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    grabRecipes(update);
+  } catch (err) {
+      
+  }
+}
 
   export const AddToFavorites = async (object,returnFavorite) => {
     try {
