@@ -6,6 +6,9 @@ function SearchContainerPresentational (props) {
         availableRecipes:availableRecipes,
         pageIndex:pageIndex,
         turnPage:turnPage,
+        setRecipeList:setRecipeList,
+        seedData:seedData,
+        clearData:clearData,
         AllCategories:AllCategories,
         titleImage:titleImage,
         handleSearch:handleSearch,
@@ -30,6 +33,13 @@ function SearchContainerPresentational (props) {
             />
             </div>
         </div>
+        <div className="admin-bar"> 
+                <ButtonGroup>
+                    <AddRecipe setRecipeList={setRecipeList} />
+                    <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
+                    <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear Recipes</Button>
+                </ButtonGroup>
+                </div>
         <div className="category-container">
             {AllCategories}
         </div>
