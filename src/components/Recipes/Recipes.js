@@ -5,9 +5,14 @@ import { serverURL } from '../Root/Root';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ArrowBack } from '@mui/icons-material';
+import { useNavigate } from 'react-router';
 function Recipes () {
     const [recipe,setRecipe] = useState({})
+    const navigate = useNavigate();
     const {id} = useParams();
+    function goBack () {
+        navigate(-1);
+    }
     const checkForIngredients = recipe.hasOwnProperty('ingredients') ? recipe['ingredients'].length : '';
     async function Recipe () {
         const recipe = await fetch(serverURL+`/recipes/${id}`);
@@ -27,7 +32,7 @@ function Recipes () {
             ><div className="window-container">
         <div className="recipes-container">
             <div className="window-exit">
-                    <Button><ArrowBack  sx={{fontSize:'6em',color:'#471824'}} /></Button>
+                    <Button onClick={goBack}><ArrowBack  sx={{fontSize:'6em',color:'#471824'}} /></Button>
                 </div>
             <div className="image-container">
                  <img src={serverURL+recipe.image} />
