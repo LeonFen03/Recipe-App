@@ -35,7 +35,6 @@ function SearchContainerPresentational (props) {
         </div>
         <div className="admin-bar"> 
                 <ButtonGroup>
-                    <AddRecipe setRecipeList={setRecipeList} />
                     <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
                     <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear Recipes</Button>
                 </ButtonGroup>
