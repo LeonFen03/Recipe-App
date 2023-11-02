@@ -29,6 +29,22 @@
     }
   }
   
+  export const addRecipe = async (object,update) => {
+    try {
+    const recipe = await fetch(serverURL+'/recipes/create', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(object)
+    })
+    const postedRecipe = await recipe.json();
+    update({ mockUp:false,  recipes:postedRecipe});
+  
+    } catch (err) {
+        
+    }
+  }
   
 
   export const AddToFavorites = async (object,returnFavorite) => {

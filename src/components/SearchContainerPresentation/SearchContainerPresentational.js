@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import {ButtonGroup} from "@mui/material";
+import AddRecipe from "../AddRecipes/AddRecipe";
 function SearchContainerPresentational (props) {
     const {
         availableRecipes:availableRecipes,
@@ -35,6 +36,7 @@ function SearchContainerPresentational (props) {
         </div>
         <div className="admin-bar"> 
                 <ButtonGroup>
+                    <AddRecipe setRecipeList={setRecipeList} />
                     <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
                     <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear Recipes</Button>
                 </ButtonGroup>

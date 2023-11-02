@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import AddRecipeDialog from './AddRecipeDialog';
-import { addRecipe } from "../MockData/MockData";
+import { addRecipe } from "../RecipeMethods/RecipeMethods";
 function AddRecipe ({ setRecipeList }) {
     const [image,setImage] = useState('')
     const [name,setName] = useState('')
