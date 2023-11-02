@@ -71,6 +71,13 @@ function SearchContainer () {
     function handleSearch (e) {
         setSearchInput(e.target.value)
     }
+    async function clearData () {
+        const seedData = await fetch(serverURL+'/recipes/clear');
+        const seedJSON = await seedData.json();
+        setRecipeList({ mockUp:false, recipes:[]})
+     
+    }
+    
     async function seedData () {
         const seedData = await fetch(serverURL+'/recipes/seeds');
         const seedJSON = await seedData.json();
@@ -78,7 +85,7 @@ function SearchContainer () {
      
         
      }
-     
+
     const availableRecipes = useMemo(() => {
         let extractRecipes = recipesList['recipes'];
         if (currentCategory === 'favorite') {
