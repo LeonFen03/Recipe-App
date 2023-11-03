@@ -24,10 +24,19 @@
 .recipes-container .recipes-information-container {
     padding:50px;
     display:flex;
-    justify-content:space-around;
     flex-direction: column;
+    justify-content:center;
     align-items: center;
 
+}
+.setting-divider {
+    margin:10px;
+    display:flex;
+    margin:auto;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    margin:10px;
 }
 .recipes-information-container .text-container {
     font-size:2em;
