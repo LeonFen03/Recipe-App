@@ -1,6 +1,5 @@
 import './SearchContainer.css';
 import { useState, useEffect } from 'react';
-import { TextField } from '@mui/material';
 import RecipeCard from '../Recipe-Card/RecipeCard';
 import titleImage from '../images/title.png';
 import IcecreamIcon from '@mui/icons-material/Icecream';
@@ -16,7 +15,8 @@ import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { serverURL } from '../Root/Root';
 
-export const pagesConverter  = (items,numOfPages = 2) => {
+// Created function for converting items into pages
+const pagesConverter  = (items,numOfPages = 2) => {
     let pageIndex = 0;
     const pagesArray = [[]];
     if (!items.length) return [];
@@ -33,12 +33,14 @@ export const pagesConverter  = (items,numOfPages = 2) => {
 }
 
 function SearchContainer () {
+    // Declaration of state variables
     const [searchInput,setSearchInput] = useState('');
     const [recipesList,setRecipeList] = useState({mockUp:false, recipes:null});
     const [favorited,setFavorited] = useState([])
     const [pageIndex,setPageIndex] = useState(0);
     const [currentCategory,setCurrentCategory] = useState('all');
     const categories = [['breakfast',<BrunchDiningIcon sx={{fontSize:'5em'}} />],['lunch',<RestaurantIcon sx={{fontSize:'5em'}}  />],['dinner',<DinnerDiningIcon sx={{fontSize:'5em'}} />],['dessert',<IcecreamIcon sx={{fontSize:'5em'}}  />],['all',<LocalLibraryIcon sx={{fontSize:'5em'}}  />],['favorite',<FavoriteIcon sx={{fontSize:'4em', marginRight:'3px'}} />]];
+
 
     function switchCategory (category) {
         setCurrentCategory(category);
@@ -47,6 +49,7 @@ function SearchContainer () {
     function turnPage (i) {
         setPageIndex(i);
     }
+
     function RetreiveRecipes () {
         fetch(serverURL+'/recipes')
         .then((resolved) => {
@@ -85,7 +88,6 @@ function SearchContainer () {
      
         
      }
-
     const availableRecipes = useMemo(() => {
         let extractRecipes = recipesList['recipes'];
         if (currentCategory === 'favorite') {
@@ -111,6 +113,7 @@ function SearchContainer () {
                             key:key,
                             isFavorited:isFavorited ? true : false,
                         }
+
                         return (
                             <RecipeCard {...RecipeCardProperties} />
                             )

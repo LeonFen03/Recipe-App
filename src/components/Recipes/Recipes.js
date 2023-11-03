@@ -8,17 +8,23 @@ import { ArrowBack } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 function Recipes () {
     const [recipe,setRecipe] = useState({})
+    const [editBoolean,setEditBoolean] = useState(false);
     const navigate = useNavigate();
     const {id} = useParams();
+
+
+
     function goBack () {
         navigate(-1);
     }
+
     const checkForIngredients = recipe.hasOwnProperty('ingredients') ? recipe['ingredients'].length : '';
     async function Recipe () {
         const recipe = await fetch(serverURL+`/recipes/${id}`);
         const recipeJSON = await recipe.json();
         setRecipe(recipeJSON['recipes']);
     }
+
     useEffect(() => {
         Recipe();
     })
