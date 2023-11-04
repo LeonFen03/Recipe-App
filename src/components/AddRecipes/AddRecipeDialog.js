@@ -154,10 +154,14 @@ function ClickableChips( {handleClick, handleImage }) {
 
   return (
     <Stack direction="row" spacing={1}>
-      <Chip label="breakfast" variant={ chosen === 'breakfast' ? "filled" : "outlined"} onClick={() => chooseDefault('breakfast',handleClick)} />
-      <Chip label="lunch" variant={ chosen === 'lunch' ? "filled" : "outlined"} onClick={() => chooseDefault('lunch',handleClick)} />
-      <Chip label="dinner" variant={ chosen === 'dinner' ? "filled" : "outlined"} onClick={() => handleClick('dinner',handleClick)} />
-      <Chip label="all" variant={ chosen === 'all' ? "filled" : "outlined"} onClick={() => handleClick('all',handleClick)} />
+      <Chip label="breakfast" variant={ chosen === 'breakfast' ? "filled" : "outlined"} onClick={() => chooseDefault('breakfast')} />
+      <Chip label="lunch" variant={ chosen === 'lunch' ? "filled" : "outlined"} onClick={() => chooseDefault('lunch')} />
+      <Chip label="dinner" variant={ chosen === 'dinner' ? "filled" : "outlined"} onClick={() => chooseDefault('dinner')} />
+      <Chip label="all" variant={ chosen === 'all' ? "filled" : "outlined"} onClick={() => chooseDefault('all')} />
     </Stack>
   );
 }
+/*
+- Remove all handleClick functions for Each function call of choos
+
+*/
