@@ -1,3 +1,4 @@
+//requirements
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -12,9 +13,9 @@ import {InputAdornment} from '@mui/material';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-
 import { useState } from 'react';
 
+//define style for dialog
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -24,6 +25,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+//returns the add recipe dialog 
 export default function AddRecipeDialogs(props) {
   const {handleName, handleInstructions, handleImage, handleCategory, handleIngredients, handleSubmit, imageUrl} = props;
   const { name } = props;
