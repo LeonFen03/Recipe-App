@@ -4,6 +4,7 @@ import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} fr
 import { AnimatePresence } from 'framer-motion';
 import Root from './components/Root/Root';
 import Home from './components/Home/Home';
+import AddRecipesPage from './components/AddRecipes/AddRecipesPage';
 
 export const pagesConverter  = (items,numOfPages = 2) => {
   let pageIndex = 0;
@@ -25,6 +26,9 @@ function App() {
     <Route path="/" element={<Root />}> 
     <Route path="Home" element={<Home />} />
     <Route path="recipes" element={<Recipes />} >
+      <Route path="add"  element={<AddRecipesPage />} >
+        <Route path=":id"  />
+      </Route>
       <Route path=":id" />
     </Route>
     </Route>))

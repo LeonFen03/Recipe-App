@@ -38,6 +38,22 @@
 
     }
   }
+  export const UpdateRecipe = async (id,object,updateResults) => {
+    try {
+
+    const recipe = await fetch(serverURL+`/recipes/${id}`, {
+        method: 'PUT',
+        headers: {
+        'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(object)
+    })
+    updateResults(recipe)
+    } catch (err) {
+        
+    }
+  }
+
 
   export const addRecipe = async (object,update) => {
     try {

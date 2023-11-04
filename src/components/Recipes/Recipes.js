@@ -1,5 +1,5 @@
 import './Recipes.css'
-import { useEffect,useState } from 'react';
+import { useCallback, useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 import { serverURL } from '../Root/Root';
 import { Button } from '@mui/material';
@@ -10,12 +10,13 @@ import { Edit } from '@mui/icons-material';
 import { TextField } from '@mui/material';
 import DescriptionIcon from '@mui/icons-material/Description';
 import {InputAdornment} from '@mui/material';
+import { UpdateRecipe } from '../RecipeMethods/RecipeMethods';
 function Recipes () {
     const [recipe,setRecipe] = useState({})
     const [editBoolean,setEditBoolean] = useState(false);
-    const [name,setName] = useState('');
-    const [instructions,setInstructions] = useState('');
-    const [ingredients,setIngredients] = useState([])
+    const [name,setName] = useState(recipe.name);
+    const [instructions,setInstructions] = useState(recipe.instructions);
+    const [ingredients,setIngredients] = useState(recipe.ingredients)
     const navigate = useNavigate();
     const {id} = useParams();
     const settings_properties = {fontSize:'1.5em',color:'#471824',transform:'scale(1.6)',width:'250px'};
@@ -26,22 +27,31 @@ function Recipes () {
 
     function goBack () {
         navigate(-1);
-    }
+    } 
     function handleName (e) {
-        setName(e.target.value)
+        setName(e.target.value);
     }
     function handleInstructions (e) {
         setInstructions(e.target.value)
     }
     function handleIngredients (e) {
-        setIngredients(e.target.value)
+        const ingredients = e.target.value.split('/');
+        setIngredients(!ingredients.length ? e.target.value : ingredients)
+    }
+    function newline (ingredient) {
+        return (<p>{ingredient}</p>)
     }
 
 
+    const saveRecipe = useCallback( async () => {
+        UpdateRecipe(id,{
+            name:name,
+            instructions:instructions,
+            ingredients:ingredients
+        },setRecipe)
+        setEditBoolean(false)
+    },[name,instructions,ingredients])
 
-    function saveRecipe () {
-
-    }
     const checkForIngredients = recipe.hasOwnProperty('ingredients') ? recipe['ingredients'].length : '';
     async function Recipe () {
         const recipe = await fetch(serverURL+`/recipes/${id}`);
@@ -51,7 +61,7 @@ function Recipes () {
 
     useEffect(() => {
         Recipe();
-    })
+    },[recipe])
     if (recipe.hasOwnProperty('_id')) {
         return (<motion.div
             initial={{ opacity: 0, transform:`scale(0.7)` }}
@@ -74,8 +84,9 @@ function Recipes () {
                     {editBoolean ?  <TextField
                                     id="input-with-icon-textfield"
                                     label="Recipe Name"
-                                    onClick={handleName}
+                                    onChange={handleName}
                                     sx={settings_properties}
+                                    defaultValue={recipe.name}
                                     InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -89,7 +100,8 @@ function Recipes () {
                     {editBoolean ? <TextField
                                     id="input-with-icon-textfield"
                                     label="Recipe Instructions"
-                                    onClick={handleInstructions}
+                                    onChange={handleInstructions}
+                                    defaultValue={recipe.instructions}
                                     sx={settings_properties}
                                     InputProps={{
                                     startAdornment: (
@@ -99,30 +111,33 @@ function Recipes () {
                                     variant="standard" /> : <p><b>{recipe.instructions}</b></p>}
                 </div>
                 <div className="text-container setting-divider">
-                <p>Ingredients:</p> 
+                <p>Ingredients {editBoolean ?  <span>(newline '/')</span> : ''}:</p> 
                     
                    {editBoolean ? <TextField
                                     id="input-with-icon-textfield"
                                     label="Recipe Ingredients"
-                                    onClick={handleIngredients}
+                                    onChange={handleIngredients}
+                                    defaultValue={'None'}
                                     sx={settings_properties}
                                     InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
                                         <DescriptionIcon />
                                         </InputAdornment>),}}
-                                    variant="standard" />  : (recipe.ingredients.length ? <p><b>{recipe['ingredients']}</b></p> : <p>No Ingredients Listed</p>)}
+                                    variant="standard" />  : (recipe.ingredients.length ? <p><b>{recipe['ingredients'].map(newline)}</b></p> : <p>No Ingredients Listed</p>)}
 
                 </div>
                 <div className="setting-divider">
                 {editBoolean ?
-                     <Button sx={{fontSize:'2em',color:'#471824'}}>Save</Button> : ''}
+                     <Button onClick={saveRecipe} sx={{fontSize:'2em',color:'#471824'}}>Save</Button> : ''}
                 </div>
                 </div>
         </div>
     </div></motion.div>)
     } else {
-        // navigate(-1);
+       return (<div style={{display:'flex',justifyContent:'center',alignItems:'center'}} className="recipes-container"> 
+        <h2>No recipe found please try again </h2>
+        </div>)
     }
 }
 
