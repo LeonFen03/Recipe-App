@@ -50,9 +50,8 @@ function Recipes () {
             ingredients:ingredients
         },setRecipe)
         setEditBoolean(false)
-    },[name,instructions,ingredients])
+    },[name,instructions,ingredients,id])
 
-    const checkForIngredients = recipe.hasOwnProperty('ingredients') ? recipe['ingredients'].length : '';
     async function Recipe () {
         const recipe = await fetch(serverURL+`/recipes/${id}`);
         const recipeJSON = await recipe.json();
@@ -76,7 +75,7 @@ function Recipes () {
                     <Button  onClick={editToggle} sx={{color:'#471824',fontSize:'1.4em'}}>Edit <Edit sx={{fontSize:'2em',color:'#471824'}} /></Button>
                 </div>
             <div className="image-container">
-                 <img src={serverURL+recipe.image} />
+                 <img src={serverURL+recipe.image} alt={recipe.name} />
             </div>
             <div className="recipes-information-container ">
                 <div className="text-container setting-divider">

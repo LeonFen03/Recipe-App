@@ -22,7 +22,7 @@ function RecipeCard (props) {
         if (isFavorited) {
             setFavoriteToggle(favoritedStatus);
         }
-    },[favoritedStatus]);
+    },[favoritedStatus,isFavorited]);
 
     function handleToggle (recipes) {
         if (favoriteToggle) {
@@ -58,7 +58,7 @@ function RecipeCard (props) {
             </div>
         </div>
         <div style={recipe_image_properties} className="recipe-image">
-            <img src={image} />
+            <img src={image}  alt={props.name} />
         </div>
         
     </Card> </motion.div>)

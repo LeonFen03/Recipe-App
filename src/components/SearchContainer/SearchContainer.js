@@ -77,7 +77,7 @@ function SearchContainer () {
     async function clearData () {
         const seedData = await fetch(serverURL+'/recipes/clear');
         const seedJSON = await seedData.json();
-        setRecipeList({ mockUp:false, recipes:[]})
+        setRecipeList({ mockUp:false, recipes:seedJSON})
      
     }
 

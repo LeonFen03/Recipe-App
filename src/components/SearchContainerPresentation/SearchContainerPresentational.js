@@ -4,15 +4,15 @@ import {ButtonGroup} from "@mui/material";
 import AddRecipe from "../AddRecipes/AddRecipe";
 function SearchContainerPresentational (props) {
     const {
-        availableRecipes:availableRecipes,
-        pageIndex:pageIndex,
-        turnPage:turnPage,
-        setRecipeList:setRecipeList,
-        seedData:seedData,
-        clearData:clearData,
-        AllCategories:AllCategories,
-        titleImage:titleImage,
-        handleSearch:handleSearch,
+        availableRecipes,
+        pageIndex,
+        turnPage,
+        setRecipeList,
+        seedData,
+        clearData,
+        AllCategories,
+        titleImage,
+        handleSearch,
     } = props;
 
 
@@ -20,7 +20,7 @@ function SearchContainerPresentational (props) {
     <div>
     <div className="search-results">
     <div className="image-box">
-        <img src={titleImage} />
+        <img src={titleImage}  alt={'Recipe Book'}/>
     </div>
     <div className="results">
         <div className="search-bar">
