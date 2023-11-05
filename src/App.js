@@ -1,3 +1,4 @@
+//requirements
 import './App.css';
 import Recipes from './components/Recipes/Recipes';
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
@@ -21,6 +22,8 @@ export const pagesConverter  = (items,numOfPages = 2) => {
   })
   return  pagesArray;
 }
+
+//returns the main webpage
 function App() {
   const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Root />}> 
