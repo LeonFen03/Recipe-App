@@ -47,6 +47,8 @@ function AddRecipesPage () {
         <TextField
         id="input-with-icon-textfield"
         label="Recipe Name"
+        name="name"
+        onChange={handleRecipeProperties}
         sx={settings_properties}
         defaultValue={recipe.name}
         InputProps={{
@@ -59,6 +61,8 @@ function AddRecipesPage () {
         <TextField
         id="input-with-icon-textfield"
         label="Image Url"
+        name="image"
+        onChange={handleRecipeProperties}
         sx={settings_properties}
         defaultValue={recipe.name}
         InputProps={{
@@ -71,6 +75,8 @@ function AddRecipesPage () {
         <TextField
         id="input-with-icon-textfield"
         label="Instructions"
+        name="instructions"
+        onChange={handleRecipeProperties}
         sx={settings_properties}
         defaultValue={recipe.name}
         InputProps={{
@@ -83,6 +89,8 @@ function AddRecipesPage () {
         <TextField
         id="input-with-icon-textfield"
         label="Ingredients"
+        name="ingredients"
+        onChange={handleRecipeProperties}
         sx={settings_properties}
         defaultValue={recipe.name}
         InputProps={{
