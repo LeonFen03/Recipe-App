@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import {ButtonGroup} from "@mui/material";
 import AddRecipe from "../AddRecipes/AddRecipe";
+import { useNavigate } from "react-router";
 function SearchContainerPresentational (props) {
     const {
         availableRecipes,
@@ -39,7 +40,8 @@ function SearchContainerPresentational (props) {
                 <ButtonGroup>
                     <AddRecipe setRecipeList={setRecipeList} />
                     <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
-                    <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear Recipes</Button>
+                    <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear recipes</Button>
+                    <Button variant="contained" style={{backgroundColor:'#471824'}} onClick={handleClickOpen}>Add recipes</Button>
                 </ButtonGroup>
                 </div>
         <div className="category-container">

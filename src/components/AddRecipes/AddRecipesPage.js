@@ -7,7 +7,7 @@ function AddRecipesPage () {
     transition={{ duration: 1.9,type: "spring",bounce:0.5 }}
 
     ><div>
-
+        
         
     </div></motion.div>)
 
