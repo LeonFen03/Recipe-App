@@ -20,7 +20,7 @@ function Root () {
    </div>)
   }
 
-export const serverURL = 'http://localhost:3002';
+export const serverURL = 'https://recipe-backend-3ec90697f7a1.herokuapp.com/';
 
 
 export const formatImage =  (imageURL) => {
