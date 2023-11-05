@@ -1,8 +1,13 @@
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import {ButtonGroup} from "@mui/material";
-import AddRecipe from "../AddRecipes/AddRecipe";
+import { useNavigate } from "react-router";
 function SearchContainerPresentational (props) {
+    const navigate = useNavigate();
+    function addRecipe() {
+        navigate('/add');
+    }
+
     const {
         availableRecipes,
         pageIndex,
@@ -36,9 +41,9 @@ function SearchContainerPresentational (props) {
         </div>
         <div className="admin-bar"> 
                 <ButtonGroup>
-                    <AddRecipe setRecipeList={setRecipeList} />
+                    <Button variant="contained" style={{backgroundColor:'#471824'}} onClick={addRecipe} >Add recipe</Button>
                     <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
-                    <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear Recipes</Button>
+                    <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear recipes</Button>
                 </ButtonGroup>
                 </div>
         <div className="category-container">

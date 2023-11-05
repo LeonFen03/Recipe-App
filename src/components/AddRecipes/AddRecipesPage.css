@@ -1,0 +1,19 @@
+.form {
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items:center;
+    height:800px;
+}
+.images-container {
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items:center;
+}
+.images-container > img {
+    width: 200px;
+    margin-top:50px;
+    height:auto;
+}

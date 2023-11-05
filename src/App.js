@@ -29,11 +29,9 @@ function App() {
     <Route path="/" element={<Root />}> 
     <Route path="Home" element={<Home />} />
     <Route path="recipes" element={<Recipes />} >
-      <Route path="add"  element={<AddRecipesPage />} >
-        <Route path=":id"  />
-      </Route>
       <Route path=":id" />
     </Route>
+    <Route path="add"  element={<AddRecipesPage />} />
     </Route>))
 
   return (

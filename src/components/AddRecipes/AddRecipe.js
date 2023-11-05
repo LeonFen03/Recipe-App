@@ -15,7 +15,7 @@ function AddRecipe ({ setRecipeList }) {
     
     
     useEffect(() => {
-        console.log(category)
+        console.log(category);
     },[category])
 
 //function takes user input adding recipe to database

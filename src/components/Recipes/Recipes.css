@@ -3,7 +3,7 @@
     margin: 200px auto;
     background-color:#dac3b3;
     height:auto;
-    min-height:1300px;
+    min-height:1100px;
     border-radius:30px;
     color: rgb(94, 61, 54);
     border:4px solid rgba(138,89,78,255);
@@ -13,7 +13,6 @@
 .recipes-container  img {
     width:500px;
     height:500px;
-
     border-radius:30px;
 }
 .recipes-container .image-container {

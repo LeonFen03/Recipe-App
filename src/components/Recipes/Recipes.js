@@ -11,6 +11,8 @@ import { TextField } from '@mui/material';
 import DescriptionIcon from '@mui/icons-material/Description';
 import {InputAdornment} from '@mui/material';
 import { UpdateRecipe } from '../RecipeMethods/RecipeMethods';
+import { useMemo } from 'react';
+import { formatImage } from '../Root/Root';
 function Recipes () {
     const [recipe,setRecipe] = useState({})
     const [editBoolean,setEditBoolean] = useState(false);
@@ -20,7 +22,15 @@ function Recipes () {
     const navigate = useNavigate();
     const {id} = useParams();
     const settings_properties = {fontSize:'1.5em',color:'#471824',transform:'scale(1.6)',width:'250px'};
-
+    const [image,properties] = useMemo(() => {
+        if (recipe['image']) {
+            return formatImage(recipe['image'])
+        } else {
+            return ['','']
+        }
+        
+        
+    },[recipe])
     function editToggle () {
         setEditBoolean(!editBoolean);
     }
@@ -61,6 +71,7 @@ function Recipes () {
     useEffect(() => {
         Recipe();
     },[recipe])
+    
     if (recipe.hasOwnProperty('_id')) {
         return (<motion.div
             initial={{ opacity: 0, transform:`scale(0.7)` }}
@@ -75,7 +86,7 @@ function Recipes () {
                     <Button  onClick={editToggle} sx={{color:'#471824',fontSize:'1.4em'}}>Edit <Edit sx={{fontSize:'2em',color:'#471824'}} /></Button>
                 </div>
             <div className="image-container">
-                 <img src={serverURL+recipe.image} alt={recipe.name} />
+                 <img src={image} alt={recipe.name} />
             </div>
             <div className="recipes-information-container ">
                 <div className="text-container setting-divider">

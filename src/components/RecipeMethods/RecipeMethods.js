@@ -65,7 +65,9 @@
         body: JSON.stringify(object)
     })
     const postedRecipe = await recipe.json();
-    update({ mockUp:false,  recipes:postedRecipe});
+    if (typeof update === 'function') {
+      update({ mockUp:false,  recipes:postedRecipe});
+    }
   
     } catch (err) {
         
