@@ -7,18 +7,29 @@ import { TextField } from "@mui/material";
 import {useState} from "react";
 import DescriptionIcon from '@mui/icons-material/Description';
 import {InputAdornment} from '@mui/material';
+import SelectAutoWidth from "../AddRecipes/materialUISelectFeild";
+import { addRecipe } from "../RecipeMethods/RecipeMethods";
 function AddRecipesPage () {
     const navigate = useNavigate();
-    const [recipe,setRecipe] = useState({})
+    const [recipe,setRecipe] = useState({name:'', image:'/images/default plate.png',ingredients:'',instructions:'',category:'lunch'})
     const settings_properties = {fontSize:'1.5em',color:'#471824',transform:'scale(1.6)',width:'250px'};
+
+    function handleSubmit () {
+        addRecipe(recipe)
+        navigate('/Home');
+    }
 
     function handleRecipeProperties(event) {
         const {target } = event;
+        let value = target.value;
+        if ((!target.value && target.name === 'image')) {
+            value = '/images/default plate.png';
+        }
         setRecipe((prev) => 
         {
         return {
                 ...prev,
-                [target.name]: target.value
+                [target.name]: value
             }
 
         })
@@ -99,8 +110,8 @@ function AddRecipesPage () {
         <DescriptionIcon />
         </InputAdornment>),}}
          variant="standard" />
-
-        
+        <SelectAutoWidth handleChange={handleRecipeProperties} selectItems={["Dinner","Lunch","Breakfast"]} />
+    
     </div></div></div></motion.div>)
 
 }
