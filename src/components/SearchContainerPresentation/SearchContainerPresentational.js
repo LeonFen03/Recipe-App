@@ -5,6 +5,11 @@ import {ButtonGroup} from "@mui/material";
 import AddRecipe from "../AddRecipes/AddRecipe";
 import { useNavigate } from "react-router";
 function SearchContainerPresentational (props) {
+    const navigate = useNavigate();
+    function AddRecipe () {
+        navigate('/add/');
+    }
+    
     const {
         availableRecipes,
         pageIndex,
