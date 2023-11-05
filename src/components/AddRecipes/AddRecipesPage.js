@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import './AddRecipe.css';
 function AddRecipesPage () {
     return (<motion.div
     initial={{ opacity: 0, transform:`scale(0.7)` }}
@@ -7,7 +8,7 @@ function AddRecipesPage () {
     transition={{ duration: 1.9,type: "spring",bounce:0.5 }}
 
     ><div>
-        
+
         
     </div></motion.div>)
 

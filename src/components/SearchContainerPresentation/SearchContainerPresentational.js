@@ -9,7 +9,7 @@ function SearchContainerPresentational (props) {
     function AddRecipe () {
         navigate('/add/');
     }
-    
+
     const {
         availableRecipes,
         pageIndex,
@@ -46,7 +46,7 @@ function SearchContainerPresentational (props) {
                     <AddRecipe setRecipeList={setRecipeList} />
                     <Button  style={{backgroundColor:'#471824' }} onClick={seedData} variant="contained">Seed recipes</Button>
                     <Button  style={{backgroundColor:'#471824'}} onClick={clearData} variant="contained">Clear recipes</Button>
-                    <Button variant="contained" style={{backgroundColor:'#471824'}} onClick={handleClickOpen}>Add recipes</Button>
+                    <Button variant="contained" style={{backgroundColor:'#471824'}} onClick={AddRecipe}>Add recipes</Button>
                 </ButtonGroup>
                 </div>
         <div className="category-container">
