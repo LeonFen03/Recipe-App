@@ -1,3 +1,4 @@
+//requirements
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -18,6 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+//this returns the recipe dialog
 export default function CustomizedDialogs(props) {
   const [open, setOpen] = React.useState(false);
 

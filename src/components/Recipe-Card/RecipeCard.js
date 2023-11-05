@@ -1,3 +1,4 @@
+// requirements
 import './RecipeCard.css';
 import {Card} from '@mui/material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
@@ -11,6 +12,8 @@ import { Link } from 'react-router-dom';
 import { deleteRecipe } from '../RecipeMethods/RecipeMethods';
 import CloseIcon from '@mui/icons-material/Close';
 import { formatImage } from '../Root/Root';
+
+//this returns the recipe card element
 function RecipeCard (props) {
     const {favoritedStatus} = props;
     const {isFavorited} = props;
@@ -24,6 +27,7 @@ function RecipeCard (props) {
         }
     },[favoritedStatus,isFavorited]);
 
+    //toggles the display of the favorites button ellement
     function handleToggle (recipes) {
         if (favoriteToggle) {
             const id = recipes["_id"] ? recipes["_id"] : recipes["id"];
