@@ -12,6 +12,18 @@ function AddRecipesPage () {
     const [recipe,setRecipe] = useState({})
     const settings_properties = {fontSize:'1.5em',color:'#471824',transform:'scale(1.6)',width:'250px'};
 
+    function handleRecipeProperties(event) {
+        const {target } = event;
+        setRecipe((prev) => 
+        {
+        return {
+                ...prev,
+                [target.name]: target.value
+            }
+
+        })
+    }
+
     function goBack () {
         navigate(-1);
     }
@@ -35,6 +47,42 @@ function AddRecipesPage () {
         <TextField
         id="input-with-icon-textfield"
         label="Recipe Name"
+        sx={settings_properties}
+        defaultValue={recipe.name}
+        InputProps={{
+        startAdornment: (
+       <InputAdornment position="start">
+        <DescriptionIcon />
+        </InputAdornment>),}}
+         variant="standard" />
+
+        <TextField
+        id="input-with-icon-textfield"
+        label="Image Url"
+        sx={settings_properties}
+        defaultValue={recipe.name}
+        InputProps={{
+        startAdornment: (
+       <InputAdornment position="start">
+        <DescriptionIcon />
+        </InputAdornment>),}}
+         variant="standard" />
+
+        <TextField
+        id="input-with-icon-textfield"
+        label="Instructions"
+        sx={settings_properties}
+        defaultValue={recipe.name}
+        InputProps={{
+        startAdornment: (
+       <InputAdornment position="start">
+        <DescriptionIcon />
+        </InputAdornment>),}}
+         variant="standard" />
+
+        <TextField
+        id="input-with-icon-textfield"
+        label="Ingredients"
         sx={settings_properties}
         defaultValue={recipe.name}
         InputProps={{
