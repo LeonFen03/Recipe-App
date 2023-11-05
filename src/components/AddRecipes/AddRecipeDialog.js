@@ -41,9 +41,6 @@ export default function AddRecipeDialogs(props) {
     handleClose();
     handleSubmit();
   }
-  function clear () {
-      handleImage('')
-  }
   return (
     <div>
         <Button variant="contained" style={{backgroundColor:'#471824'}} onClick={handleClickOpen}>{props.text}</Button>
@@ -161,7 +158,3 @@ function ClickableChips( {handleClick, handleImage }) {
     </Stack>
   );
 }
-/*
-- Remove all handleClick functions for Each function call of choos
-
-*/

@@ -25,7 +25,7 @@ function RecipeCard (props) {
         if (isFavorited) {
             setFavoriteToggle(favoritedStatus);
         }
-    },[favoritedStatus]);
+    },[favoritedStatus,isFavorited]);
 
     //toggles the display of the favorites button ellement
     function handleToggle (recipes) {
@@ -62,7 +62,7 @@ function RecipeCard (props) {
             </div>
         </div>
         <div style={recipe_image_properties} className="recipe-image">
-            <img src={image} />
+            <img src={image}  alt={props.name} />
         </div>
         
     </Card> </motion.div>)

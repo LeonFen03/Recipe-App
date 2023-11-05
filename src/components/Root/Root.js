@@ -1,6 +1,5 @@
 import { Outlet } from "react-router";
 import { Button } from "@mui/material";
-import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import './Root.css';
 

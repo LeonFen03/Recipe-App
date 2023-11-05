@@ -32,7 +32,7 @@
       .catch((err) => {
         console.log('errors')
       })
-      const deletedRecipeJSON = await deletedRecipe.json();
+      await deletedRecipe.json();
       grabFavorites(returnFavorites);
     } catch (err) {
 
@@ -74,7 +74,7 @@
 
   export const deleteRecipe = async (id,update) => {
   try {
-    const deleteRecipe = await fetch(serverURL+`/recipes/${id}`,{
+   await fetch(serverURL+`/recipes/${id}`,{
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
