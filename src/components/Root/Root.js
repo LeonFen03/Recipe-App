@@ -14,9 +14,6 @@ function Root () {
               <li>
                  <Button style={{borderRadius:'10px',backgroundColor:'rgba(138,89,78,255)'}} variant="contained" onClick={(e) => navigate('/Home')}>Home</Button>
               </li>
-              <li>
-                <Button style={{borderRadius:'10px',backgroundColor:'rgba(138,89,78,255)'}} variant="contained" onClick={(e) => navigate('/Favorites')}>Login</Button>
-              </li>
           </ul>
           </nav>
       <Outlet />
